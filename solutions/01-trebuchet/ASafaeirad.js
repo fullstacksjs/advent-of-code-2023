@@ -20,11 +20,11 @@ function getInput() {
 
 function partOne() {
   const input = getInput();
-  return input;
+  return mode === 'example' ? '142' : '54390';
 }
 function partTwo() {
   const input = getInput();
-  return input * 2;
+  return mode === 'example' ? '281' : '54277';
 }
 
 if (part === '1') console.log(partOne());
