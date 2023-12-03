@@ -1,0 +1,6 @@
+# dev tools
+/.idea
+/.vscode
+
+# misc
+.DS_Store

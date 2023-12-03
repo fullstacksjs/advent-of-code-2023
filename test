@@ -1,0 +1,39 @@
+#!/usr/bin/env bash
+EXAMPLE1_RESULT=$($1 1 example)
+EXAMPLE2_RESULT=$($1 2 example)
+PART1_RESULT=$($1 1)
+PART2_RESULT=$($1 2)
+FILE_PATH="$(dirname $1)/outputs"
+
+while IFS= read -r line; do
+  VAR_NAME=$(echo "$line" | cut -d'=' -f1)
+  VAR_VALUE=$(echo "$line" | cut -d'=' -f2)
+
+  if [[ -n $VAR_NAME ]]; then
+    eval "$VAR_NAME=$VAR_VALUE"
+  fi
+done <"$FILE_PATH"
+
+if [[ "$EXAMPLE1" == "$EXAMPLE1_RESULT" ]]; then
+  echo "✅ Example 1 passed."
+else
+  echo "❌ Example 1 Failed: Exapected \"${EXAMPLE1}\" but recieved \"$EXAMPLE1_RESULT\""
+fi
+
+if [[ "$ANSWER1" == "$PART1_RESULT" ]]; then
+  echo "✅ Part 1 passed."
+else
+  echo "❌ Part 1 failed: Exapected \"${ANSWER1}\" but recieved \"$PART1_RESULT\""
+fi
+
+if [[ "$EXAMPLE2" == "$EXAMPLE2_RESULT" ]]; then
+  echo "✅ Example 2 passed."
+else
+  echo "❌ Example 2 Failed: Exapected \"${EXAMPLE2}\" but recieved \"$EXAMPLE2_RESULT\""
+fi
+
+if [[ "$ANSWER2" == "$PART2_RESULT" ]]; then
+  echo "✅ Part 2 passed."
+else
+  echo "❌ Part 2 failed: Exapected \"${ANSWER2}\" but recieved \"$PART2_RESULT\""
+fi
